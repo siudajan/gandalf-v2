@@ -2,13 +2,18 @@ import os
 from decouple import config
 from flask import Flask, redirect, render_template, request, session, url_for
 from utils.openai import generate_text
-from utils.firebase import create_user, post_prompt, update_prompt_status
+from utils.db import create_user, post_prompt, update_prompt_status, init_db
 from game.gamestate import GameState
 
 app = Flask(__name__)
 
 # Set the secret key for the session
 app.secret_key = config('FLASK_SECRET_KEY')
+
+try:
+    init_db()
+except Exception as e:
+    print("Warning: could not initialize database:", e)
 
 @app.route('/')
 def index():

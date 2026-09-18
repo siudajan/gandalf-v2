@@ -118,8 +118,7 @@ class GameState:
     Represents the game state and characters.
     """
     def __init__(self):
-        # Mom, Tim Cook, and Terminator are deactivated for now - focusing on Gandalf only.
-        self.characters = {gandalf.id: gandalf}
+        self.characters = {gandalf.id: gandalf, mom.id: mom, tim.id: tim, terminator.id: terminator}
         self.active_character_id = None
 
     def set_active_character(self, character_id):
